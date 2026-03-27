@@ -650,6 +650,49 @@ body {
   animation: pulse-bg 1.5s infinite;
 }
 
+.timer-card.unlimited {
+  border-color: var(--accent);
+  background: rgba(27, 153, 139, 0.04);
+}
+
+.unlimited-badge {
+  background: var(--accent) !important;
+  color: white !important;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.unlimited-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.unlimited-current-price {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--accent);
+}
+
+.unlimited-option {
+  border-style: dashed !important;
+  border-color: var(--accent) !important;
+}
+
+.unlimited-option.selected {
+  background: var(--accent) !important;
+  border-style: solid !important;
+  color: white;
+}
+
+.unlimited-option .package-time {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
 @keyframes pulse-border {
   0%, 100% { box-shadow: 0 0 0 3px rgba(230, 57, 70, 0.15); }
   50% { box-shadow: 0 0 0 6px rgba(230, 57, 70, 0.25); }

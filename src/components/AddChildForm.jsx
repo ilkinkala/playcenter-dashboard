@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { UserPlus, Baby, Users, Clock, Phone } from 'lucide-react';
+import { UserPlus, Baby, Users, Clock, Phone, Infinity } from 'lucide-react';
 import { getPackages, formatPrice } from '../utils/pricing';
 import { initAudio } from '../utils/sound';
 
@@ -21,20 +21,34 @@ export default function AddChildForm({ onAdd }) {
     // Unlock audio on user click so alerts can play sound later
     initAudio();
 
-    const pkg = packages[selectedPackage];
     const now = Date.now();
 
-    onAdd({
-      id: `child_${now}_${Math.random().toString(36).slice(2, 8)}`,
-      childName: childName.trim(),
-      parentName: parentName.trim(),
-      parentPhone: parentPhone.trim() || '',
-      packageLabel: pkg.label,
-      packageMinutes: pkg.minutes,
-      packagePrice: pkg.price,
-      startTime: now,
-      endTime: now + pkg.minutes * 60 * 1000,
-    });
+    if (selectedPackage === 'unlimited') {
+      onAdd({
+        id: `child_${now}_${Math.random().toString(36).slice(2, 8)}`,
+        childName: childName.trim(),
+        parentName: parentName.trim(),
+        parentPhone: parentPhone.trim() || '',
+        packageLabel: 'Sinirsiz',
+        packageMinutes: 0,
+        packagePrice: 0,
+        startTime: now,
+        endTime: 0,
+      });
+    } else {
+      const pkg = packages[selectedPackage];
+      onAdd({
+        id: `child_${now}_${Math.random().toString(36).slice(2, 8)}`,
+        childName: childName.trim(),
+        parentName: parentName.trim(),
+        parentPhone: parentPhone.trim() || '',
+        packageLabel: pkg.label,
+        packageMinutes: pkg.minutes,
+        packagePrice: pkg.price,
+        startTime: now,
+        endTime: now + pkg.minutes * 60 * 1000,
+      });
+    }
 
     setChildName('');
     setParentName('');
@@ -99,13 +113,27 @@ export default function AddChildForm({ onAdd }) {
               <span className="package-price">{formatPrice(pkg.price)}</span>
             </button>
           ))}
+          <button
+            type="button"
+            className={`package-option unlimited-option ${selectedPackage === 'unlimited' ? 'selected' : ''}`}
+            onClick={() => setSelectedPackage('unlimited')}
+          >
+            <span className="package-time"><Infinity size={16} /> Sinirsiz</span>
+            <span className="package-price">Sureli</span>
+          </button>
         </div>
       </div>
 
-      {selectedPackage !== null && (
+      {selectedPackage !== null && selectedPackage !== 'unlimited' && (
         <div className="price-preview">
           <span>Odenecek Tutar:</span>
           <strong>{formatPrice(packages[selectedPackage].price)}</strong>
+        </div>
+      )}
+
+      {selectedPackage === 'unlimited' && (
+        <div className="price-preview">
+          <span>Ucret kullanilan sureye gore hesaplanacak</span>
         </div>
       )}
 
