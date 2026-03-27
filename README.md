@@ -6,13 +6,24 @@ A full-featured management panel for children's entertainment centers. Built to 
 
 ## Screenshots
 
-| Login | Dashboard | History |
-|-------|-----------|---------|
-| ![Login](screenshots/login.png) | ![Dashboard](screenshots/dashboard.png) | ![History](screenshots/history.png) |
+### Login
+![Login](screenshots/login.png)
 
-| Reports | Settings |
-|---------|----------|
-| ![Reports](screenshots/reports.png) | ![Settings](screenshots/settings.png) |
+### Dashboard — Live Timers
+![Dashboard](screenshots/dashboard.png)
+
+### Session History
+![History](screenshots/history.png)
+
+### Reports & Analytics
+![Reports](screenshots/reports.png)
+
+### Invoice
+![Invoice](screenshots/invoice.png)
+
+### Settings
+![Settings 1](screenshots/settings-1.png)
+![Settings 2](screenshots/settings-2.png)
 
 ## Features
 
